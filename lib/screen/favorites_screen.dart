@@ -4,20 +4,19 @@ import 'package:mvvm_statemanagements_project/constants/my_app_icons.dart';
 import 'package:mvvm_statemanagements_project/widgets/cached_iamge.dart';
 import 'package:mvvm_statemanagements_project/widgets/movies/movies_widget.dart';
 
-class MoviesScreen extends StatelessWidget {
-  const MoviesScreen({super.key});
+class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Popular Movies"),
+        title: const Text("Favorites Movies"),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(MyAppIcons.favoriteRounded, color: Colors.red),
+            icon: const Icon(MyAppIcons.delete, color: Colors.red),
           ),
-          IconButton(onPressed: () {}, icon: const Icon(MyAppIcons.darkMode)),
         ],
       ),
       body: ListView.builder(

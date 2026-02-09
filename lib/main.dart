@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_statemanagements_project/screen/favorites_screen.dart';
 import 'package:mvvm_statemanagements_project/screen/movies_screen.dart';
 
 import 'constants/my_app_themes.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: MyThemesData.darkTheme,
       // darkTheme: MyThemesData.darkTheme,
       // themeMode: ThemeMode.system,
-      home: const MoviesScreen(),
+      home: const FavoritesScreen(), //const MoviesScreen(),
     );
   }
 }
