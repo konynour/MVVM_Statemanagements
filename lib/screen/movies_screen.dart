@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_constants.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_icons.dart';
 import 'package:mvvm_statemanagements_project/widgets/cached_iamge.dart';
+import 'package:mvvm_statemanagements_project/widgets/movies/movies_widget.dart';
 
 class MoviesScreen extends StatelessWidget {
   const MoviesScreen({super.key});
@@ -10,7 +11,7 @@ class MoviesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('popular movies'),
+        title: const Text("Popular Movies"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -22,9 +23,9 @@ class MoviesScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-          return Padding(
+          return const Padding(
             padding: EdgeInsets.all(8.0),
-            child: CachedImageWidget(imageUrl: MyAppConstants.movieImage),
+            child: MoviesWidget(),
           );
         },
       ),
