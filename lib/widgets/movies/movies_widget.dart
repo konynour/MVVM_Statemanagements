@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_constants.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_icons.dart';
 import 'package:mvvm_statemanagements_project/widgets/cached_iamge.dart';
+import 'package:mvvm_statemanagements_project/widgets/movies/favorite_btn.dart';
 
 class MoviesWidget extends StatelessWidget {
   const MoviesWidget({super.key});
@@ -67,7 +68,7 @@ class MoviesWidget extends StatelessWidget {
                               style: TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),
-                            // TODO: Add the favorite button
+                            const FavoriteBtn(),
                           ],
                         ),
                       ],
