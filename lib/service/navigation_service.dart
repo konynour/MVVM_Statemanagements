@@ -6,10 +6,10 @@ class NavigationService {
   NavigationService() {
     navigatorKey = GlobalKey<NavigatorState>();
   }
-navigate(Widget widget){
+Future<dynamic>? navigate(Widget widget){
 return navigatorKey.currentState?.push(MaterialPageRoute(builder: (context) => widget));}
 
 
-navigateReplace(Widget widget){
+Future<dynamic>? navigateReplace(Widget widget){
 return navigatorKey.currentState?.pushReplacement(MaterialPageRoute(builder: (context) => widget));}
 }

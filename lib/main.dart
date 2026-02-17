@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_statemanagements_project/screens/favorites_screen.dart';
-import 'package:mvvm_statemanagements_project/screens/movie_details.dart';
 import 'package:mvvm_statemanagements_project/screens/movies_screen.dart';
-import 'package:mvvm_statemanagements_project/screens/splash_screen.dart';
 import 'package:mvvm_statemanagements_project/service/init_getit.dart';
 import 'package:mvvm_statemanagements_project/service/navigation_service.dart';
-import 'package:mvvm_statemanagements_project/widgets/my_error_widget.dart';
 
 import 'constants/my_app_themes.dart';
 
