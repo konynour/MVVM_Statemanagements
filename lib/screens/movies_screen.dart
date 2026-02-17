@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_icons.dart';
+import 'package:mvvm_statemanagements_project/models/movies_models.dart';
 import 'package:mvvm_statemanagements_project/screens/favorites_screen.dart';
 import 'package:mvvm_statemanagements_project/service/api_service.dart';
 import 'package:mvvm_statemanagements_project/service/init_getit.dart';
@@ -22,7 +25,11 @@ class MoviesScreen extends StatelessWidget {
             },
             icon: const Icon(MyAppIcons.favoriteRounded, color: Colors.red),
           ),
-          IconButton(onPressed: () async{await getIt<ApiService>().fetchMovies();}, icon: const Icon(MyAppIcons.darkMode)),
+          IconButton(onPressed: () async{
+            final List<MoviesModels> movies = await getIt<ApiService>().fetchMovies();
+            log("movies : $movies");
+            },
+             icon: const Icon(MyAppIcons.darkMode)),
         ],
       ),
       body: ListView.builder(
