@@ -51,7 +51,7 @@ class MoviesModels {
   }
 
 
-
+ 
   Map<String, dynamic> toJson() {
    
     return {
