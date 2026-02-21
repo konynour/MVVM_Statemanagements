@@ -9,7 +9,7 @@ import 'package:mvvm_statemanagements_project/service/api_service.dart';
 import 'package:mvvm_statemanagements_project/service/init_getit.dart';
 import 'package:mvvm_statemanagements_project/service/navigation_service.dart';
 import 'package:mvvm_statemanagements_project/widgets/movies/movies_widget.dart';
-
+import 'package:mvvm_statemanagements_project/repository/movies_repo.dart';
 class MoviesScreen extends StatelessWidget {
   const MoviesScreen({super.key});
 
@@ -31,8 +31,8 @@ class MoviesScreen extends StatelessWidget {
               // final List<MoviesModels> movies = await getIt<ApiService>()
               //     .fetchMovies();
               // log("movies : $movies");
-              final List<MoviesGenre> genres = await getIt<ApiService>()
-                  .fetchGenre();
+              final List<MoviesGenre> genres = await getIt<MoviesRepository>().fetchGenre();
+                  // await getIt<ApiService>().fetchGenre();
               log("genres : $genres");
             },
             icon: const Icon(MyAppIcons.darkMode),
