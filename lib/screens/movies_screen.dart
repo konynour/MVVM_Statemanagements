@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_icons.dart';
+import 'package:mvvm_statemanagements_project/models/movies_genre.dart';
 import 'package:mvvm_statemanagements_project/models/movies_models.dart';
 import 'package:mvvm_statemanagements_project/screens/favorites_screen.dart';
 import 'package:mvvm_statemanagements_project/service/api_service.dart';
@@ -20,16 +21,22 @@ class MoviesScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-             //TODO Navigate to favorites screen
-             getIt<NavigationService>().navigate(const FavoritesScreen());
+              //TODO Navigate to favorites screen
+              getIt<NavigationService>().navigate(const FavoritesScreen());
             },
             icon: const Icon(MyAppIcons.favoriteRounded, color: Colors.red),
           ),
-          IconButton(onPressed: () async{
-            final List<MoviesModels> movies = await getIt<ApiService>().fetchMovies();
-            log("movies : $movies");
+          IconButton(
+            onPressed: () async {
+              // final List<MoviesModels> movies = await getIt<ApiService>()
+              //     .fetchMovies();
+              // log("movies : $movies");
+              final List<MoviesGenre> genres = await getIt<ApiService>()
+                  .fetchGenre();
+              log("genres : $genres");
             },
-             icon: const Icon(MyAppIcons.darkMode)),
+            icon: const Icon(MyAppIcons.darkMode),
+          ),
         ],
       ),
       body: ListView.builder(

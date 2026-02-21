@@ -33,27 +33,24 @@ class MoviesModels {
 
   factory MoviesModels.fromJson(Map<String, dynamic> json) {
     return MoviesModels(
-    adult : json['adult'],
-    backdropPath : json['backdrop_path'],
-    genreIds : json['genre_ids'].cast<int>(),
-    id : json['id'],
-    originalLanguage : json['original_language'],
-    originalTitle : json['original_title'],
-    overview : json['overview'] ,
-    popularity : json['popularity'],
-    posterPath : json['poster_path'],
-    releaseDate : json['release_date'],
-    title : json['title'],
-    video : json['video'],
-    voteAverage : json['vote_average'],
-    voteCount : json['vote_count'],
-  );
+      adult: json['adult'],
+      backdropPath: json['backdrop_path'],
+      genreIds: json['genre_ids'].cast<int>(),
+      id: json['id'],
+      originalLanguage: json['original_language'],
+      originalTitle: json['original_title'],
+      overview: json['overview'],
+      popularity: json['popularity'],
+      posterPath: json['poster_path'],
+      releaseDate: json['release_date'],
+      title: json['title'],
+      video: json['video'],
+      voteAverage: json['vote_average'],
+      voteCount: json['vote_count'],
+    );
   }
 
-
- 
   Map<String, dynamic> toJson() {
-   
     return {
       'adult': adult,
       'backdrop_path': backdropPath,
@@ -70,5 +67,10 @@ class MoviesModels {
       'vote_average': voteAverage,
       'vote_count': voteCount,
     };
+  }
+
+  @override
+  String toString() {
+    return 'MoviesModels(adult: $adult, backdropPath: $backdropPath, genreIds: $genreIds, id: $id, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, popularity: $popularity, posterPath: $posterPath, releaseDate: $releaseDate, title: $title, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
   }
 }
