@@ -12,4 +12,6 @@ return navigatorKey.currentState?.push(MaterialPageRoute(builder: (context) => w
 
 Future<dynamic>? navigateReplace(Widget widget){
 return navigatorKey.currentState?.pushReplacement(MaterialPageRoute(builder: (context) => widget));}
+
+  void showSnackbar(String s) {}
 }
