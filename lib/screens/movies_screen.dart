@@ -99,7 +99,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
         itemCount: _movies.length + (_isFetching ? 1 : 0),
         itemBuilder: (context, index) {
           if (index < _movies.length) {
-            return const MoviesWidget();
+            return  MoviesWidget(moviemodel: _movies[index]);
           } else {
             return const CircularProgressIndicator.adaptive();
           }

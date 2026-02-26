@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_constants.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_icons.dart';
+import 'package:mvvm_statemanagements_project/models/movies_models.dart';
 import 'package:mvvm_statemanagements_project/screens/movie_details.dart';
 import 'package:mvvm_statemanagements_project/service/init_getit.dart';
 import 'package:mvvm_statemanagements_project/service/navigation_service.dart';
@@ -9,7 +10,9 @@ import 'package:mvvm_statemanagements_project/widgets/movies/favorite_btn.dart';
 import 'package:mvvm_statemanagements_project/widgets/movies/genres_list_widget.dart';
 
 class MoviesWidget extends StatelessWidget {
-  const MoviesWidget({super.key});
+  const MoviesWidget({required this.moviemodel, super.key});
+
+  final MoviesModels moviemodel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +24,7 @@ class MoviesWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
           onTap: () {
             // TODO: Navigate To The Movie Details Screen
-            getIt<NavigationService>().navigate(const MovieDetailsScreen());
+            getIt<NavigationService>().navigate(MovieDetailsScreen(moviemodel: moviemodel));
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -32,8 +35,8 @@ class MoviesWidget extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12.0),
-                    child: const CachedImageWidget(
-                      imgUrl: MyAppConstants.movieImage,
+                    child:  CachedImageWidget(
+                      imgUrl: "https://image.tmdb.org/t/p/w500/${moviemodel.backdropPath}",
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -41,19 +44,19 @@ class MoviesWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "Movie Title",
-                          style: TextStyle(
+                         Text(
+                          moviemodel.originalTitle!,
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: 10),
-                        const Row(
+                         Row(
                           children: [
-                            Icon(Icons.star, color: Colors.amber, size: 20),
-                            SizedBox(width: 5),
-                            Text("8/10"),
+                            const Icon(Icons.star, color: Colors.amber, size: 20),
+                            const SizedBox(width: 5),
+                            Text("${moviemodel.voteAverage}/10"),
                           ],
                         ),
                         const SizedBox(height: 10),
@@ -69,9 +72,9 @@ class MoviesWidget extends StatelessWidget {
                               color: Theme.of(context).colorScheme.secondary,
                             ),
                             const SizedBox(width: 5),
-                            const Text(
-                              "Release Date",
-                              style: TextStyle(color: Colors.grey),
+                             Text(
+                              moviemodel.releaseDate!,
+                              style: const TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),
                             const FavoriteBtn(),

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:mvvm_statemanagements_project/constants/my_app_constants.dart';
+import 'package:mvvm_statemanagements_project/models/movies_models.dart';
 import 'package:mvvm_statemanagements_project/widgets/cached_iamge.dart';
 import 'package:mvvm_statemanagements_project/widgets/movies/favorite_btn.dart';
 
 import '../widgets/movies/genres_list_widget.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
-  const MovieDetailsScreen({super.key});
-
+  const MovieDetailsScreen({required this.moviemodel, super.key});
+final MoviesModels moviemodel;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
