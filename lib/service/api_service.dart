@@ -9,7 +9,7 @@ import 'package:mvvm_statemanagements_project/models/movies_models.dart';
 class ApiService {
   Future<List<MoviesModels>> fetchMovies({int page = 1}) async {
     final url = Uri.parse(
-      "${ApiConstants.baseUrl}/movie/popular?language=en-US&page=1",
+      "${ApiConstants.baseUrl}/movie/popular?language=en-US&page=$page",
     );
     final response = await http.get(url, headers: ApiConstants.headers);
     if (response.statusCode == 200) {
