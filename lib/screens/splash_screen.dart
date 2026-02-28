@@ -1,13 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_statemanagements_project/repository/movies_repo.dart';
+import 'package:mvvm_statemanagements_project/screens/movies_screen.dart';
+import 'package:mvvm_statemanagements_project/service/init_getit.dart';
+import 'package:mvvm_statemanagements_project/service/navigation_service.dart';
 import 'package:mvvm_statemanagements_project/widgets/my_error_widget.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  bool _isLoading = true;
+  String _errorText = "";
+  final  _moviesRepository = getIt<MoviesRepository>();
+
+
+  Future<void> _loadData() async {
+    setState(() {
+      _isLoading = true;
+      _errorText = "";
+    });
+    try {
+      await _moviesRepository.fetchMovies();
+      await getIt<NavigationService>().navigateReplace(  const MoviesScreen());
+    } catch (e) {
+      setState(() {
+        _errorText = e.toString();
+      });
+    }finally{
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+    
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MyErrorWidget(errorText: "errorText", retryFunction: () {}),
+
+      body: _isLoading ? const Center(child:
+      Column(mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+       children: [
+        Text("Loading..."),
+        SizedBox(height: 20),
+        CircularProgressIndicator.adaptive(),
+        ]) ) :
+         MyErrorWidget(errorText: _errorText, retryFunction: _loadData),
     );
   }
 }
