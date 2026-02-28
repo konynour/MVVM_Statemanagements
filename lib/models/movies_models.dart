@@ -43,7 +43,7 @@ class MoviesModels {
       popularity: json['popularity'],
       posterPath: json['poster_path'],
       releaseDate: json['release_date'],
-      title: json['title'],
+      title: json['title']?? "",
       video: json['video'],
       voteAverage: json['vote_average'],
       voteCount: json['vote_count'],

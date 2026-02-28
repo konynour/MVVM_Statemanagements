@@ -17,11 +17,14 @@ final MoviesModels moviemodel;
       body: SafeArea(
         child: Stack(
           children: [
-            SizedBox(
-              height: size.height * 0.45,
-              width: double.infinity,
-              child: const CachedImageWidget(
-                imgUrl: MyAppConstants.movieImage,
+            Hero(
+              tag: "${moviemodel.id}",
+              child: SizedBox(
+                height: size.height * 0.45,
+                width: double.infinity,
+                child: CachedImageWidget(
+                  imgUrl:"https://image.tmdb.org/t/p/w500/${moviemodel.backdropPath}",
+                ),
               ),
             ),
             SingleChildScrollView(
@@ -44,8 +47,8 @@ final MoviesModels moviemodel;
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const SizedBox(height: 25),
-                                const Text(
-                                  "Movie Title",
+                                Text(
+                                  moviemodel.title  ?? "NO TITLE",
                                   maxLines: 2,
                                   style: TextStyle(
                                     // color: Theme.of(context).textSelectionColor,
@@ -57,7 +60,7 @@ final MoviesModels moviemodel;
                                   height: 8,
                                 ),
                                 const SizedBox(height: 5.0),
-                                const Row(
+                                 Row(
                                   children: [
                                     Icon(
                                       Icons.star,
@@ -65,10 +68,10 @@ final MoviesModels moviemodel;
                                       size: 20,
                                     ),
                                     SizedBox(width: 5),
-                                    Text("9/10"),
+                                    Text("${moviemodel.voteAverage}/10"),
                                     Spacer(),
                                     Text(
-                                      "Release Date",
+                                      moviemodel.releaseDate ?? "NO DATE",
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                   ],
@@ -77,7 +80,7 @@ final MoviesModels moviemodel;
                                 const GenresWidget(),
                                 const SizedBox(height: 15),
                                 Text(
-                                  "overview " * 200,
+                                  moviemodel.overview ?? "NO OVERVIEW",
                                   textAlign: TextAlign.justify,
                                   style: const TextStyle(
                                     fontSize: 18.0,
