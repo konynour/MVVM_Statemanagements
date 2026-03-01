@@ -14,23 +14,22 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   bool _isLoading = true;
-  String _errorText = "";
-  final  _moviesRepository = getIt<MoviesRepository>();
-
+  String _errorMessage = "";
+  final _moviesRepository = getIt<MoviesRepository>();
 
   Future<void> _loadData() async {
     setState(() {
       _isLoading = true;
-      _errorText = "";
+      _errorMessage = "";
     });
     try {
-      await _moviesRepository.fetchMovies();
-      await getIt<NavigationService>().navigateReplace(  const MoviesScreen());
+      await _moviesRepository.fetchGenre();
+      await getIt<NavigationService>().navigateReplace(const MoviesScreen());
     } catch (e) {
       setState(() {
-        _errorText = e.toString();
+        _errorMessage = e.toString();
       });
-    }finally{
+    } finally {
       setState(() {
         _isLoading = false;
       });
@@ -42,20 +41,23 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     _loadData();
   }
-    
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      body: _isLoading ? const Center(child:
-      Column(mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-       children: [
-        Text("Loading..."),
-        SizedBox(height: 20),
-        CircularProgressIndicator.adaptive(),
-        ]) ) :
-         MyErrorWidget(errorText: _errorText, retryFunction: _loadData),
+      body: _isLoading
+          ? const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("Loading..."),
+                  SizedBox(height: 20),
+                  CircularProgressIndicator.adaptive(),
+                ],
+              ),
+            )
+          : MyErrorWidget(errorText: _errorMessage, retryFunction: _loadData),
     );
   }
 }

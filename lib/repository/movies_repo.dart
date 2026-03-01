@@ -9,8 +9,8 @@ class MoviesRepository {
   Future<List<MoviesModels>> fetchMovies({int page = 1}) async {
     return await _apiService.fetchMovies(page: page);
   }
-
+  List<MoviesGenre> cachedGenre = [];
   Future<List<MoviesGenre>> fetchGenre() async {
-    return await _apiService.fetchGenre();
+    return  cachedGenre = await _apiService.fetchGenre();
   }
 }

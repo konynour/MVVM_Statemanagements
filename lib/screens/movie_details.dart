@@ -77,7 +77,7 @@ final MoviesModels moviemodel;
                                   ],
                                 ),
                                 const SizedBox(height: 10),
-                                const GenresWidget(),
+                                 GenresListWidget(movieModel: moviemodel),
                                 const SizedBox(height: 15),
                                 Text(
                                   moviemodel.overview ?? "NO OVERVIEW",

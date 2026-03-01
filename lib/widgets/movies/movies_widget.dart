@@ -64,7 +64,7 @@ class MoviesWidget extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         // TODO: Add the genres widget
-                        const GenresWidget(),
+                         GenresListWidget(movieModel: moviemodel),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
