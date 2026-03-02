@@ -59,7 +59,7 @@ class MoviesWidget extends StatelessWidget {
                           children: [
                             const Icon(Icons.star, color: Colors.amber, size: 20),
                             const SizedBox(width: 5),
-                            Text("${moviemodel.voteAverage}/10"),
+                            Text("${moviemodel.voteAverage?.toStringAsFixed(1)}/10"),
                           ],
                         ),
                         const SizedBox(height: 10),
@@ -80,7 +80,7 @@ class MoviesWidget extends StatelessWidget {
                               style: const TextStyle(color: Colors.grey),
                             ),
                             const Spacer(),
-                            const FavoriteBtn(),
+                             FavoriteBtn(moviemodel: moviemodel),
                           ],
                         ),
                       ],

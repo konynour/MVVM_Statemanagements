@@ -3,6 +3,8 @@ import 'package:mvvm_statemanagements_project/repository/movies_repo.dart';
 import 'package:mvvm_statemanagements_project/service/init_getit.dart';
 
 class GenreUtils {
+
+  // TODO:about the genres
  // and then here we need to create a getter that it will return the sting instead of the int 
  // so here we will do the mapping correctly, so we will get the integers from thee movie's response and 
 // map it to the movies list to genres list we have so let's create a  static method for that

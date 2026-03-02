@@ -98,9 +98,10 @@ final MoviesModels moviemodel;
                             color: Theme.of(context).cardColor,
                             shape: BoxShape.circle,
                           ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(6.0),
-                            child: FavoriteBtn(),
+                          child:  Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: FavoriteBtn(moviemodel: moviemodel),
+
                           ),
                         ),
                       ),
