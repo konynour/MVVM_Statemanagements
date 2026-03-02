@@ -68,7 +68,7 @@ final MoviesModels moviemodel;
                                       size: 20,
                                     ),
                                     SizedBox(width: 5),
-                                    Text("${moviemodel.voteAverage}/10"),
+                                    Text("${moviemodel.voteAverage?.toStringAsFixed(1)}/10"),
                                     Spacer(),
                                     Text(
                                       moviemodel.releaseDate ?? "NO DATE",
