@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       // darkTheme: MyThemesData.darkTheme,
       // themeMode: ThemeMode.system,
       home: 
-      const SplashScreen(), //const FavoritesScreen(), //const MoviesScreen(),
+      const MoviesScreen(), //const FavoritesScreen(), //const MoviesScreen(),
     );
   }
 }

@@ -12,7 +12,7 @@ class GenreUtils {
 // we are calling function in order to load all the genres inside splash screen
 static List<MoviesGenre> movieGenresNames(List<int> genreIds){
     final moviesRepository = getIt<MoviesRepository>();
-   final cachedGenre = moviesRepository.cachedGenre;
+   final cachedGenre = [];  //TODO: we_need_get_the_correct_cachedGenres
     List<MoviesGenre> genreNames = [];
     for (var genreId in genreIds){
       var genre = cachedGenre.firstWhere((g)=>g.id == genreId,

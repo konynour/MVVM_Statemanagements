@@ -8,8 +8,10 @@ import 'package:mvvm_statemanagements_project/widgets/movies/favorite_btn.dart';
 import '../widgets/movies/genres_list_widget.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
-  const MovieDetailsScreen({required this.moviemodel, super.key});
-final MoviesModels moviemodel;
+  const MovieDetailsScreen({super.key,
+//  required this.moviemodel
+  });
+// final MoviesModels moviemodel;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
@@ -17,14 +19,13 @@ final MoviesModels moviemodel;
       body: SafeArea(
         child: Stack(
           children: [
-            Hero(
-              tag: "${moviemodel.id}",
-              child: SizedBox(
-                height: size.height * 0.45,
-                width: double.infinity,
-                child: CachedImageWidget(
-                  imgUrl:"https://image.tmdb.org/t/p/w500/${moviemodel.backdropPath}",
-                ),
+            SizedBox(
+              height: size.height * 0.45,
+              width: double.infinity,
+              child: CachedImageWidget(
+                imgUrl:MyAppConstants.movieImage
+
+                // "https://image.tmdb.org/t/p/w500/${moviemodel.backdropPath}",
               ),
             ),
             SingleChildScrollView(
@@ -48,7 +49,7 @@ final MoviesModels moviemodel;
                               children: [
                                 const SizedBox(height: 25),
                                 Text(
-                                  moviemodel.title  ?? "NO TITLE",
+                                  'moviemodel.title',
                                   maxLines: 2,
                                   style: TextStyle(
                                     // color: Theme.of(context).textSelectionColor,
@@ -68,19 +69,22 @@ final MoviesModels moviemodel;
                                       size: 20,
                                     ),
                                     SizedBox(width: 5),
-                                    Text("${moviemodel.voteAverage?.toStringAsFixed(1)}/10"),
-                                    Spacer(),
+                                    Text('8/10'),
+                                      //"${moviemodel.voteAverage?.toStringAsFixed(1)}/10"),
+                                    const Spacer(),
                                     Text(
-                                      moviemodel.releaseDate ?? "NO DATE",
+                                      'moviemodel.releaseDate',
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                   ],
                                 ),
                                 const SizedBox(height: 10),
-                                 GenresListWidget(movieModel: moviemodel),
+                                 GenresListWidget(
+                                  // movieModel: moviemodel
+                                  ),
                                 const SizedBox(height: 15),
                                 Text(
-                                  moviemodel.overview ?? "NO OVERVIEW",
+                                  'moviemodel.overview',
                                   textAlign: TextAlign.justify,
                                   style: const TextStyle(
                                     fontSize: 18.0,
@@ -98,9 +102,11 @@ final MoviesModels moviemodel;
                             color: Theme.of(context).cardColor,
                             shape: BoxShape.circle,
                           ),
-                          child:  Padding(
-                            padding: const EdgeInsets.all(6.0),
-                            child: FavoriteBtn(moviemodel: moviemodel),
+                          child:  const Padding(
+                            padding: EdgeInsets.all(6.0),
+                            child: FavoriteBtn(
+                              // moviemodel: moviemodel
+                              ),
 
                           ),
                         ),
