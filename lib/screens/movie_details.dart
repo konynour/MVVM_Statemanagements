@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:mvvm_statemanagements_project/constants/my_app_constants.dart';
-import 'package:mvvm_statemanagements_project/models/movies_models.dart';
 import 'package:mvvm_statemanagements_project/widgets/cached_iamge.dart';
 import 'package:mvvm_statemanagements_project/widgets/movies/favorite_btn.dart';
 

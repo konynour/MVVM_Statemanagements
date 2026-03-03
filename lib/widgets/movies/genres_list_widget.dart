@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_statemanagements_project/constants/my_app_constants.dart';
 import 'package:mvvm_statemanagements_project/models/movies_genre.dart';
-import 'package:mvvm_statemanagements_project/models/movies_models.dart';
 import 'package:mvvm_statemanagements_project/utils/genre_utils.dart';
 
 class GenresListWidget extends StatelessWidget {

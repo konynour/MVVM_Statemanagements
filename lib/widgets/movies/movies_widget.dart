@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_constants.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_icons.dart';
-import 'package:mvvm_statemanagements_project/models/movies_models.dart';
 import 'package:mvvm_statemanagements_project/screens/movie_details.dart';
 import 'package:mvvm_statemanagements_project/service/init_getit.dart';
 import 'package:mvvm_statemanagements_project/service/navigation_service.dart';
 import 'package:mvvm_statemanagements_project/widgets/cached_iamge.dart';
 import 'package:mvvm_statemanagements_project/widgets/movies/favorite_btn.dart';
-import 'package:mvvm_statemanagements_project/widgets/movies/genres_list_widget.dart';
 
 class MoviesWidget extends StatelessWidget {
   const MoviesWidget({super.key,

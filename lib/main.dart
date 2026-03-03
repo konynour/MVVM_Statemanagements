@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_statemanagements_project/screens/movies_screen.dart';
-import 'package:mvvm_statemanagements_project/screens/splash_screen.dart';
 import 'package:mvvm_statemanagements_project/service/init_getit.dart';
 import 'package:mvvm_statemanagements_project/service/navigation_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
