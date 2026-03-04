@@ -5,13 +5,16 @@ import 'package:mvvm_statemanagements_project/repository/movies_repo.dart';
 import 'package:mvvm_statemanagements_project/screens/favorites_screen.dart';
 import 'package:mvvm_statemanagements_project/service/init_getit.dart';
 import 'package:mvvm_statemanagements_project/service/navigation_service.dart';
+import 'package:mvvm_statemanagements_project/view_models/theme_provider.dart';
 import 'package:mvvm_statemanagements_project/widgets/movies/movies_widget.dart';
+import 'package:provider/provider.dart';
 
 class MoviesScreen extends StatelessWidget {
   const MoviesScreen({super.key});
 
  @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Popular Movies"),
@@ -25,6 +28,11 @@ class MoviesScreen extends StatelessWidget {
           ),
           IconButton(
             onPressed: () async {
+              themeProvider.toggleTheme();
+
+
+
+
               // final List<MoviesModels> movies = await getIt<ApiService>()
               //     .fetchMovies();
               // log("movies : $movies");

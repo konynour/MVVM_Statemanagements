@@ -3,6 +3,8 @@ import 'package:mvvm_statemanagements_project/screens/movies_screen.dart';
 import 'package:mvvm_statemanagements_project/service/init_getit.dart';
 import 'package:mvvm_statemanagements_project/service/navigation_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mvvm_statemanagements_project/view_models/theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'constants/my_app_themes.dart';
 import 'package:flutter/services.dart';
 void main() async {
@@ -22,15 +24,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: getIt<NavigationService>().navigatorKey,
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: MyThemesData.darkTheme,
-      // darkTheme: MyThemesData.darkTheme,
-      // themeMode: ThemeMode.system,
-      home: 
-      const MoviesScreen(), //const FavoritesScreen(), //const MoviesScreen(),
+    // final themeProvider = Provider.of<ThemeProvider>(context);
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
+      child: Consumer(
+        builder: (context, ThemeProvider themeProvider, child) {
+          return MaterialApp(
+            navigatorKey: getIt<NavigationService>().navigatorKey,
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            theme: themeProvider.themeData,
+            // darkTheme: MyThemesData.darkTheme,
+            // themeMode: ThemeMode.system,
+            home: 
+            const MoviesScreen(), //const FavoritesScreen(), //const MoviesScreen(),
+          );
+        }
+      ),
     );
   }
 }
