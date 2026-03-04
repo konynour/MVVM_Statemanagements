@@ -6,12 +6,12 @@ class ThemeProvider with ChangeNotifier{
    ThemeData get themeData => _themeMode;
     
 
-   final String themeKey="isDarkMode";  //TODO :load function  to save theme n 
+   final String themeKey="isDarkMode";  //TODO :load function  to save theme 
 ThemeProvider(){
   loadTheme();
 }
    Future<void> loadTheme()async{
-   final prefs = await SharedPreferences.getInstance();
+   final prefs = await SharedPreferences.getInstance();  //  TODO :small check if we have something saved in memory or not
    final isDrarkMode = prefs.getBool(themeKey) ?? true;
    _themeMode = isDrarkMode 
    ? MyThemesData.lightTheme 
