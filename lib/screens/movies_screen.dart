@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_statemanagements_project/constants/my_app_icons.dart';
+import 'package:mvvm_statemanagements_project/constants/my_app_themes.dart';
 import 'package:mvvm_statemanagements_project/models/movies_genre.dart';
 import 'package:mvvm_statemanagements_project/repository/movies_repo.dart';
 import 'package:mvvm_statemanagements_project/screens/favorites_screen.dart';
@@ -12,9 +13,9 @@ import 'package:provider/provider.dart';
 class MoviesScreen extends StatelessWidget {
   const MoviesScreen({super.key});
 
- @override
+  @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    // final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Popular Movies"),
@@ -26,28 +27,29 @@ class MoviesScreen extends StatelessWidget {
             },
             icon: const Icon(MyAppIcons.favoriteRounded, color: Colors.red),
           ),
-          IconButton(
-            onPressed: () async {
-              themeProvider.toggleTheme();
+          Consumer(
+            builder: (context, ThemeProvider themeProvider, child) {
+              return IconButton(
+                onPressed: () async {
+                  themeProvider.toggleTheme();
 
-
-
-
-              // final List<MoviesModels> movies = await getIt<ApiService>()
-              //     .fetchMovies();
-              // log("movies : $movies");
-              final List<MoviesGenre> genres = await getIt<MoviesRepository>()
-                  .fetchGenre();
-              // await getIt<ApiService>().fetchGenre();
+                  // final List<MoviesModels> movies = await getIt<ApiService>()
+                  //     .fetchMovies();
+                  // log("movies : $movies");
+                  final List<MoviesGenre> genres =
+                      await getIt<MoviesRepository>().fetchGenre();
+                  // await getIt<ApiService>().fetchGenre();
+                },
+                icon:  Icon( themeProvider.themeData == MyThemesData.darkTheme ? MyAppIcons.darkMode : MyAppIcons.lightMode),
+              );
             },
-            icon: const Icon(MyAppIcons.darkMode),
           ),
         ],
       ),
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-         return MoviesWidget();
+          return MoviesWidget();
         },
       ),
     );

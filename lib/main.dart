@@ -5,7 +5,6 @@ import 'package:mvvm_statemanagements_project/service/navigation_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mvvm_statemanagements_project/view_models/theme_provider.dart';
 import 'package:provider/provider.dart';
-import 'constants/my_app_themes.dart';
 import 'package:flutter/services.dart';
 void main() async {
   setupLocator();
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
     // final themeProvider = Provider.of<ThemeProvider>(context);
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),//..loadTheme),
       ],
       child: Consumer(
         builder: (context, ThemeProvider themeProvider, child) {
