@@ -1,4 +1,6 @@
-class MoviesModels {
+import 'package:flutter/material.dart';
+
+class MoviesModels  with ChangeNotifier{
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
