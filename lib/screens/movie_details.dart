@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:mvvm_statemanagements_project/constants/my_app_constants.dart';
+import 'package:mvvm_statemanagements_project/models/movies_models.dart';
 import 'package:mvvm_statemanagements_project/widgets/cached_iamge.dart';
 import 'package:mvvm_statemanagements_project/widgets/movies/favorite_btn.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/movies/genres_list_widget.dart';
 
@@ -12,19 +14,24 @@ class MovieDetailsScreen extends StatelessWidget {
   });
 // final MoviesModels moviemodel;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
+    final moviesModelProvider = Provider.of<MoviesModels>(context);
+
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
       body: SafeArea(
         child: Stack(
           children: [
-            SizedBox(
-              height: size.height * 0.45,
-              width: double.infinity,
-              child: CachedImageWidget(
-                imgUrl:MyAppConstants.movieImage
-
-                // "https://image.tmdb.org/t/p/w500/${moviemodel.backdropPath}",
+            Hero(
+              tag: moviesModelProvider.id!,
+              child: SizedBox(
+                height: size.height * 0.45,
+                width: double.infinity,
+                child: CachedImageWidget(
+                  imgUrl: "https://image.tmdb.org/t/p/w500/${moviesModelProvider.backdropPath}",
+              
+                  // "https://image.tmdb.org/t/p/w500/${moviemodel.backdropPath}",
+                ),
               ),
             ),
             SingleChildScrollView(
@@ -48,7 +55,7 @@ class MovieDetailsScreen extends StatelessWidget {
                               children: [
                                 const SizedBox(height: 25),
                                 Text(
-                                  'moviemodel.title',
+                                  moviesModelProvider.originalTitle!,
                                   maxLines: 2,
                                   style: TextStyle(
                                     // color: Theme.of(context).textSelectionColor,
@@ -68,22 +75,22 @@ class MovieDetailsScreen extends StatelessWidget {
                                       size: 20,
                                     ),
                                     SizedBox(width: 5),
-                                    Text('8/10'),
+                                    Text("${moviesModelProvider.voteAverage?.toStringAsFixed(1)}/10"),
                                       //"${moviemodel.voteAverage?.toStringAsFixed(1)}/10"),
                                     const Spacer(),
                                     Text(
-                                      'moviemodel.releaseDate',
+                                      moviesModelProvider.releaseDate!,
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                   ],
                                 ),
                                 const SizedBox(height: 10),
                                  GenresListWidget(
-                                  // movieModel: moviemodel
+                                  movieModel: moviesModelProvider
                                   ),
                                 const SizedBox(height: 15),
                                 Text(
-                                  'moviemodel.overview',
+                                  moviesModelProvider.overview!,
                                   textAlign: TextAlign.justify,
                                   style: const TextStyle(
                                     fontSize: 18.0,

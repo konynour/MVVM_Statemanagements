@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
   Future<void> _loadInitialData(BuildContext context) async{
 
      await Future.microtask(() async{
-      if(context.mounted) return;
+      if (!context.mounted) return;
       await Provider.of<MoviesProvider>(context, listen: false)
       .getMovies();
       
