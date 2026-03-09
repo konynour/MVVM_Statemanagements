@@ -1,37 +1,31 @@
 import 'package:flutter/material.dart';
-
 import 'package:mvvm_statemanagements_project/constants/my_app_constants.dart';
-import 'package:mvvm_statemanagements_project/models/movies_models.dart';
-import 'package:mvvm_statemanagements_project/widgets/cached_iamge.dart';
 import 'package:mvvm_statemanagements_project/widgets/movies/favorite_btn.dart';
-import 'package:provider/provider.dart';
 
+import '../models/movies_model.dart';
+import '../widgets/cached_image.dart';
 import '../widgets/movies/genres_list_widget.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
-  const MovieDetailsScreen({super.key,
-//  required this.moviemodel
+  const MovieDetailsScreen({
+    super.key,
+    // required this.movieModel
   });
-// final MoviesModels moviemodel;
-  @override
-  Widget build(BuildContext context) {  
-    final moviesModelProvider = Provider.of<MoviesModels>(context);
 
+  // final MovieModel movieModel;
+  @override
+  Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
       body: SafeArea(
         child: Stack(
           children: [
-            Hero(
-              tag: moviesModelProvider.id!,
-              child: SizedBox(
-                height: size.height * 0.45,
-                width: double.infinity,
-                child: CachedImageWidget(
-                  imgUrl: "https://image.tmdb.org/t/p/w500/${moviesModelProvider.backdropPath}",
-              
-                  // "https://image.tmdb.org/t/p/w500/${moviemodel.backdropPath}",
-                ),
+            SizedBox(
+              height: size.height * 0.45,
+              width: double.infinity,
+              child: const CachedImageWidget(
+                imgUrl: MyAppConstants.movieImage,
+                // "https://image.tmdb.org/t/p/w500/${movieModel.backdropPath}",
               ),
             ),
             SingleChildScrollView(
@@ -48,14 +42,14 @@ class MovieDetailsScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 25),
                         child: Material(
                           borderRadius: BorderRadius.circular(20),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                          child: const Padding(
+                            padding: EdgeInsets.all(16.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const SizedBox(height: 25),
+                                SizedBox(height: 25),
                                 Text(
-                                  moviesModelProvider.originalTitle!,
+                                  'movieModel.title',
                                   maxLines: 2,
                                   style: TextStyle(
                                     // color: Theme.of(context).textSelectionColor,
@@ -63,11 +57,11 @@ class MovieDetailsScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 8,
                                 ),
-                                const SizedBox(height: 5.0),
-                                 Row(
+                                SizedBox(height: 5.0),
+                                Row(
                                   children: [
                                     Icon(
                                       Icons.star,
@@ -75,24 +69,24 @@ class MovieDetailsScreen extends StatelessWidget {
                                       size: 20,
                                     ),
                                     SizedBox(width: 5),
-                                    Text("${moviesModelProvider.voteAverage?.toStringAsFixed(1)}/10"),
-                                      //"${moviemodel.voteAverage?.toStringAsFixed(1)}/10"),
-                                    const Spacer(),
+                                    Text("8/10"),
+                                    //"${movieModel.voteAverage.toStringAsFixed(1)}/10"),
+                                    Spacer(),
                                     Text(
-                                      moviesModelProvider.releaseDate!,
+                                      'movieModel.releaseDate',
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 10),
-                                 GenresListWidget(
-                                  movieModel: moviesModelProvider
-                                  ),
-                                const SizedBox(height: 15),
+                                SizedBox(height: 10),
+                                GenresListWidget(
+                                    // movieModel: movieModel,
+                                    ),
+                                SizedBox(height: 15),
                                 Text(
-                                  moviesModelProvider.overview!,
+                                  'movieModel.overview',
                                   textAlign: TextAlign.justify,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 18.0,
                                   ),
                                 ),
@@ -108,13 +102,11 @@ class MovieDetailsScreen extends StatelessWidget {
                             color: Theme.of(context).cardColor,
                             shape: BoxShape.circle,
                           ),
-                          child:  const Padding(
-                            padding: EdgeInsets.all(6.0),
-                            child: FavoriteBtn(
-                              // moviemodel: moviemodel
-                              ),
-
-                          ),
+                          child: const Padding(
+                              padding: EdgeInsets.all(6.0),
+                              child: FavoriteBtnWidget(
+                                  // movieModel: movieModel,
+                                  )),
                         ),
                       ),
                     ],

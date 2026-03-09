@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_statemanagements_project/screens/movies_screen.dart';
-import 'package:mvvm_statemanagements_project/screens/splash_screen.dart';
-import 'package:mvvm_statemanagements_project/service/init_getit.dart';
-import 'package:mvvm_statemanagements_project/service/navigation_service.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:mvvm_statemanagements_project/view_models/moives_provider.dart';
-import 'package:mvvm_statemanagements_project/view_models/theme_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() async {
-  setupLocator();
+import 'constants/my_theme_data.dart';
+import 'screens/movies_screen.dart';
+import 'screens/splash_screen.dart';
+import 'service/init_getit.dart';
+import 'service/navigation_service.dart';
+
+void main() {
+  setupLocator(); // Initialize GetIt
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
     // DeviceOrientation.landscapeLeft,
     // DeviceOrientation.landscapeRight,
   ]).then((_) async {
@@ -23,32 +23,17 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // final themeProvider = Provider.of<ThemeProvider>(context);
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<ThemeProvider>(
-          create: (_) => ThemeProvider(),
-        ), //..loadTheme)
-
-        ChangeNotifierProvider(create: (_) => MoviesProvider()),
-      ],
-      child: Consumer(
-        builder: (context, ThemeProvider themeProvider, child) {
-          return MaterialApp(
-            navigatorKey: getIt<NavigationService>().navigatorKey,
-            title: 'Flutter Demo',
-            debugShowCheckedModeBanner: false,
-            theme: themeProvider.themeData,
-            // darkTheme: MyThemesData.darkTheme,
-            // themeMode: ThemeMode.system,
-            home:
-                const SplashScreen(), //const FavoritesScreen(), //const MoviesScreen(),
-          );
-        },
-      ),
+    return MaterialApp(
+      navigatorKey: getIt<NavigationService>().navigatorKey,
+      debugShowCheckedModeBanner: false,
+      title: 'Movies App',
+      theme: MyThemeData.lightTheme,
+      home: const MoviesScreen(),
+      // const SplashScreen(), //const MovieDetailsScreen(), //const FavoritesScreen(), //const MoviesScreen(),
     );
   }
 }

@@ -6,12 +6,36 @@ class NavigationService {
   NavigationService() {
     navigatorKey = GlobalKey<NavigatorState>();
   }
-Future<dynamic>? navigate(Widget widget){
-return navigatorKey.currentState?.push(MaterialPageRoute(builder: (context) => widget));}
 
+  navigate(Widget widget) {
+    return navigatorKey.currentState?.push(
+      MaterialPageRoute(builder: (context) => widget),
+    );
+  }
 
-Future<dynamic>? navigateReplace(Widget widget){
-return navigatorKey.currentState?.pushReplacement(MaterialPageRoute(builder: (context) => widget));}
+  navigateReplace(Widget widget) {
+    return navigatorKey.currentState?.pushReplacement(
+      MaterialPageRoute(builder: (context) => widget),
+    );
+  }
 
-  void showSnackbar(String s) {}
+  Future<void> showDialog(/*BuildContext? context,*/ Widget widget) async {
+    await showAdaptiveDialog(
+        barrierDismissible: true,
+        context: /*context ??*/ navigatorKey.currentContext!,
+        builder: (context) => widget);
+  }
+
+  void showSnackbar(String message) {
+    final context = navigatorKey.currentContext!;
+    ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+    final snackbarWidget = SnackBar(
+        content: Text(
+      message,
+      style: const TextStyle(color: Colors.white),
+    ));
+    ScaffoldMessenger.of(context).showSnackBar(
+      snackbarWidget,
+    );
+  }
 }

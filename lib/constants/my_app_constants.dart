@@ -1,10 +1,5 @@
 class MyAppConstants {
-  static const String movieImage = 'https://wallpapercave.com/wp/wp2835231.jpg';
-  static const List<String> genresList = [
-    "horror",
-    "action",
-    "drama",
-    "comedy",
-    "thriller",
-  ];
+  static const String movieImage = "https://i.ibb.co/FwTPCCc/Ultra-Linx.jpg";
+
+  static const List<String> genres = ["Horror", "Action", "Thriller", "Drama"];
 }
