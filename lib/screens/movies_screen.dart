@@ -15,7 +15,7 @@ class MoviesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-        final themeState = ref.watch(themeProvider);
+        final themeState = ref.watch(themeProvider);  //watch to listen to the changes and rebuild UI
 
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +34,7 @@ class MoviesScreen extends ConsumerWidget {
           ),
           IconButton(
             onPressed: () async {
-            await  ref.read(themeProvider.notifier).toggleTheme();
+            await  ref.read(themeProvider.notifier).toggleTheme();  // read is used with functions to not rebuild the widget
             },
             icon: Icon(
                themeState == ThemeEnums.dark? MyAppIcons.darkMode: MyAppIcons.lightMode     ,
