@@ -10,17 +10,17 @@ final themeProvider = StateNotifierProvider<ThemeProvider, ThemeEnums>(
 
 class ThemeProvider extends StateNotifier<ThemeEnums> {
   final prefsKey = "isDarkMode";
-  ThemeProvider() : super(ThemeEnums.light) {
+  ThemeProvider() : super(ThemeEnums.dark) {
     _loadTheme();
   }
 
   Future<void> _loadTheme() async {
     final prefs = await SharedPreferences.getInstance();
-    final isDarkMode = prefs.getBool(prefsKey) ?? false;
+    final isDarkMode = prefs.getBool(prefsKey) ?? true;
     state = isDarkMode ? ThemeEnums.dark : ThemeEnums.light;
   }
 
-  Future<void> _toggleTheme() async {
+  Future<void> toggleTheme() async {
     final prefs = await SharedPreferences.getInstance();
     if (state == ThemeEnums.dark) {
       state = ThemeEnums.light;

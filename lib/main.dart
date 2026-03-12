@@ -29,7 +29,7 @@ class MyApp extends ConsumerWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {   // the ref is coming to change staless widget to stateful widget
 
     final themeState = ref.watch(themeProvider);
     return MaterialApp(

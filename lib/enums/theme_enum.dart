@@ -1,4 +1,2 @@
-enum ThemeEnums {
-  light,
-  dark;
-}
+enum ThemeEnums { light, dark }
+// type theme enums  
