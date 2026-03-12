@@ -2,6 +2,12 @@ import 'package:flutter_riverpod/legacy.dart';
 import 'package:mvvm_statemanagements_project/enums/theme_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+final themeProvider = StateNotifierProvider<ThemeProvider, ThemeEnums>(
+  (_) => ThemeProvider(),
+);
+
+
+
 class ThemeProvider extends StateNotifier<ThemeEnums> {
   final prefsKey = "isDarkMode";
   ThemeProvider() : super(ThemeEnums.light) {
