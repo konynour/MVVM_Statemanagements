@@ -82,7 +82,7 @@ This project showcases multiple state management solutions working together:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/<your-username>/MVVM_Statemanagements.git
+   git clone https://github.com/konynour/MVVM_Statemanagements.git
    cd MVVM_Statemanagements
    ```
 
