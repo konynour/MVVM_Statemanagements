@@ -1,55 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mvvm_statemanagements_project/enums/theme_enum.dart';
+import 'package:mvvm_statemanagements_project/view_models/theme_provider.dart';
 
-import '../constants/my_app_icons.dart';
-import '../enums/theme_enums.dart';
-import '../service/init_getit.dart';
-import '../service/navigation_service.dart';
-import '../view_models/theme_provider.dart';
-import '../widgets/movies/movies_widget.dart';
-import 'favorites_screen.dart';
+import 'constants/my_theme_data.dart';
+import 'screens/movies_screen.dart';
+import 'screens/splash_screen.dart';
+import 'service/init_getit.dart';
+import 'service/navigation_service.dart';
 
-class MoviesScreen extends StatelessWidget {
-  const MoviesScreen({super.key});
+void main() {
+  setupLocator(); // Initialize GetIt
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    // DeviceOrientation.landscapeLeft,
+    // DeviceOrientation.landscapeRight,
+  ]).then((_) async {
+    await dotenv.load(fileName: "assets/.env");
+    runApp(const ProviderScope (child:MyApp()));
+  });
+}
 
+class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Popular Movies"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              // getIt<NavigationService>().showSnackbar();
-              // getIt<NavigationService>().showDialog(MoviesWidget());
-              getIt<NavigationService>().navigate(const FavoritesScreen());
-            },
-            icon: const Icon(
-              MyAppIcons.favoriteRounded,
-              color: Colors.red,
-            ),
-          ),
-          Consumer(builder: (context, ref, child) {
-            final themeState = ref.watch(themeProvider);
-            return IconButton(
-              onPressed: () async {
-                await ref.read(themeProvider.notifier).toggleTheme();
-              },
-              icon: Icon(
-                themeState == ThemeEnums.dark
-                    ? MyAppIcons.darkMode
-                    : MyAppIcons.lightMode,
-              ),
-            );
-          })
-        ],
-      ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return const MoviesWidget();
-        },
-      ),
+  Widget build(BuildContext context, WidgetRef ref) {   // the ref is coming to change staless widget to stateful widget
+
+    final themeState = ref.watch(themeProvider);
+    return MaterialApp(
+      navigatorKey: getIt<NavigationService>().navigatorKey,
+      debugShowCheckedModeBanner: false,
+      title: 'Movies App',
+      theme: themeState == ThemeEnums.dark ? MyThemeData.darkTheme : MyThemeData.lightTheme,
+      home: const MoviesScreen(),
+      // const SplashScreen(), //const MovieDetailsScreen(), //const FavoritesScreen(), //const MoviesScreen(),
     );
   }
 }

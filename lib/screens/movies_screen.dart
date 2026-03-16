@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_statemanagements_project/view_models/theme_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart' hide Consumer;
 
 import '../constants/my_app_icons.dart';
 import '../enums/theme_enum.dart';
@@ -10,13 +10,11 @@ import '../service/navigation_service.dart';
 import '../widgets/movies/movies_widget.dart';
 import 'favorites_screen.dart';
 
-class MoviesScreen extends ConsumerWidget {
+class MoviesScreen extends StatelessWidget {
   const MoviesScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-        final themeState = ref.watch(themeProvider);  //watch to listen to the changes and rebuild UI
-
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Popular Movies"),
@@ -27,18 +25,27 @@ class MoviesScreen extends ConsumerWidget {
               // getIt<NavigationService>().showDialog(MoviesWidget());
               getIt<NavigationService>().navigate(const FavoritesScreen());
             },
-            icon: const Icon(
-              MyAppIcons.favoriteRounded,
-              color: Colors.red,
-            ),
+            icon: const Icon(MyAppIcons.favoriteRounded, color: Colors.red),
           ),
-          IconButton(
-            onPressed: () async {
-            await  ref.read(themeProvider.notifier).toggleTheme();  // read is used with functions to not rebuild the widget
+
+          Consumer(
+            builder: (context, ref, child) {
+              final themeState = ref.watch(
+                themeProvider,
+              ); //watch to listen to the changes and rebuild UI
+              return IconButton(
+                onPressed: () async {
+                  await ref
+                      .read(themeProvider.notifier)
+                      .toggleTheme(); // read is used with functions to not rebuild the widget
+                },
+                icon: Icon(
+                  themeState == ThemeEnums.dark
+                      ? MyAppIcons.darkMode
+                      : MyAppIcons.lightMode,
+                ),
+              );
             },
-            icon: Icon(
-               themeState == ThemeEnums.dark? MyAppIcons.darkMode: MyAppIcons.lightMode     ,
-            ),
           ),
         ],
       ),
