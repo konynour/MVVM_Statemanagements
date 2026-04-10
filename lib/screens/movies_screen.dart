@@ -15,6 +15,7 @@ class MoviesScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final themeState = ref.watch(themeProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Popular Movies"),
